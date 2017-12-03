@@ -14,7 +14,7 @@ import java.util.Observer;
  */
 public class Time {
 
-    ArrayList<AbsTimeZoneObserver> observers;
+    ArrayList<AbsTimeZoneObserver> observers = new ArrayList<>();
     private ZonedDateTime zonedDateTime;
 
     public Time() {
@@ -27,8 +27,13 @@ public class Time {
      *
      * @return The current value of the time
      */
+    @Deprecated
     public Calendar getValue() {
         return null;
+    }
+
+    public ZonedDateTime getZonedDateTime() {
+        return zonedDateTime;
     }
 
     /**
@@ -42,6 +47,7 @@ public class Time {
 
     public void setValue(ZonedDateTime value) {
         this.zonedDateTime = value;
+        notifyObservers();
     }
 
     /**
@@ -58,5 +64,6 @@ public class Time {
      * has changed so they need to update.
      */
     public void notifyObservers() {
+        this.observers.forEach(AbsTimeZoneObserver::update);
     }
 }

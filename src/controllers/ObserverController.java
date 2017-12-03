@@ -48,7 +48,8 @@ public class ObserverController {
         LocalDate date = ESTDate.getValue();
         LocalTime localTime = LocalTime.of(Integer.parseInt(txtESTHours.getText()), Integer.parseInt(txtESTMinutes.getText()), Integer.parseInt(txtESTSeconds.getText()));
         LocalDateTime localDateTime = LocalDateTime.of(date, localTime);
-        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.of("EST"));
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.of("-05:00"));
         time.setValue(zonedDateTime);
+
     }
 }

@@ -4,6 +4,9 @@ import javafx.scene.control.Label;
 import models.Time;
 
 import java.text.SimpleDateFormat;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 /**
@@ -11,6 +14,8 @@ import java.util.Calendar;
  * Do not worry about daylights savings time.
  */
 public class ObsPacificStandard extends AbsTimeZoneObserver {
+
+    DateTimeFormatter pstFormatter = DateTimeFormatter.ofPattern("HH:mm:ss 'PST'");
 
     /**
      * Constructor; Should set the time zone for the calendar object
@@ -25,5 +30,8 @@ public class ObsPacificStandard extends AbsTimeZoneObserver {
     // Hint: SimpleDateFormat, calendar.getTime(), and calendar.get(Calendar.HOUR_OF_DAY) can be useful here
     @Override
     public void update() {
+        ZonedDateTime pst = this.time.getZonedDateTime().withZoneSameInstant(ZoneOffset.of("-08:00"));
+        String pstText = pst.format(pstFormatter);
+        this.label.setText(pstText);
     }
 }
