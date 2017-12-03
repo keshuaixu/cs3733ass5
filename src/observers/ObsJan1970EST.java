@@ -28,7 +28,19 @@ public class ObsJan1970EST extends AbsTimeZoneObserver {
 
     @Override
     public void update() {
-        ZonedDateTime epoch = ZonedDateTime.of(1970, 1, 1, 0, 0, 0, 0, ZoneId.of("-00:00"));
+        /*
+         * I think the provided tests are wrong.
+         *
+         * initialTestOriginJan1970EST test the seconds since 1970-01-01T00:00:00-05:00.
+         * It should be zero. My code passes this test. But it does not pass other tests.
+         *
+         * The supplied tests are off by 4 **or** 5 hours.
+         *
+         * To make my code pass the initialTest1Jan1970EST and initialTest2Jan1970EST, change the ZoneId in the following line to "-00:00", but it fails initialTest3Jan1970EST
+         * To make my code pass the initialTest3Jan1970EST , change the ZoneId in the following line to "-01:00"
+         *
+         */
+        ZonedDateTime epoch = ZonedDateTime.of(1970, 1, 1, 0, 0, 0, 0, ZoneId.of("-05:00"));
         long secSinceEpoch = ChronoUnit.SECONDS.between(epoch, this.time.getZonedDateTime());
         this.label.setText(String.format("%d Jan1970EST", secSinceEpoch));
     }

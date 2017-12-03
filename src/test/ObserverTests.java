@@ -169,4 +169,17 @@ public class ObserverTests{
         // Automatically GMT
         assertEquals("1529041406 Jan1970EST", labelJan1970EST.getText());
     }
+
+    @Test
+    public void testOriginJan1970EST() {
+        ESTDate.setValue(LocalDate.of(1970, 1, 1));
+        txtESTHours.setText("0");
+        txtESTMinutes.setText("0");
+        txtESTSeconds.setText("0");
+
+        c.updateTime();
+
+        // Manually calculated Local
+        assertEquals("0 Jan1970EST", labelJan1970EST.getText());
+    }
 }
