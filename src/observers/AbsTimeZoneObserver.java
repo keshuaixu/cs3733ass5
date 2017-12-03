@@ -13,10 +13,11 @@ public abstract class AbsTimeZoneObserver {
 
     /**
      * Constructor
-     * @param time Time object we are listening to
+     *
+     * @param time  Time object we are listening to
      * @param label Label to display this observers information
      */
-    public AbsTimeZoneObserver(Time time, Label label){
+    public AbsTimeZoneObserver(Time time, Label label) {
         this.time = time;
         this.label = label;
     }

@@ -28,7 +28,7 @@ public class ObsBeforeDecade extends AbsTimeZoneObserver {
     @Override
     public void update() {
         LocalDate localDate = this.time.getZonedDateTime().toLocalDate();
-        int year = (int) Math.floor(localDate.getYear()/10.) * 10 + 9;
+        int year = (int) Math.floor(localDate.getYear() / 10.) * 10 + 9;
         LocalDate endOfDecade = LocalDate.of(year, 12, 31);
         long daysBeforeEnd = ChronoUnit.DAYS.between(localDate, endOfDecade);
         this.label.setText(String.format("%d BD", daysBeforeEnd));
