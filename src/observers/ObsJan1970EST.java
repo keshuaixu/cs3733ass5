@@ -3,6 +3,10 @@ package observers;
 import javafx.scene.control.Label;
 import models.Time;
 
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
@@ -24,5 +28,8 @@ public class ObsJan1970EST extends AbsTimeZoneObserver {
 
     @Override
     public void update() {
+        ZonedDateTime epoch = ZonedDateTime.of(1970,1,1,0,0,0,0, ZoneId.of("-00:00"));
+        long secSinceEpoch = ChronoUnit.SECONDS.between(epoch, this.time.getZonedDateTime());
+        this.label.setText(String.format("%d Jan1970EST", secSinceEpoch));
     }
 }
